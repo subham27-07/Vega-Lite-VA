@@ -1,0 +1,171 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Secondary Wheel"
+    },
+    {
+      "id": 2,
+      "name": "Bike Body Primary"
+    },
+    {
+      "id": 3,
+      "name": "Bike Body Secondary"
+    },
+    {
+      "id": 4,
+      "name": "Screws"
+    },
+    {
+      "id": 5,
+      "name": "Gear_level_4"
+    },
+    {
+      "id": 6,
+      "name": "Primary Gearboc"
+    },
+    {
+      "id": 7,
+      "name": "Primary Wheel"
+    },
+    {
+      "id": 8,
+      "name": "Secondary Gearbox"
+    },
+    {
+      "id": 9,
+      "name": "Axle"
+    },
+    {
+      "id": 10,
+      "name": "Axle plates"
+    }
+    ,
+    {
+      "id": 11,
+      "name": "Spring"
+    }
+    ,
+    {
+      "id": 12,
+      "name": "Gear Assembly"
+    },
+    {
+      "id": 13,
+      "name": "Gear level_3"
+    },
+    {
+      "id": 14,
+      "name": "Gear level_2"
+    },
+    {
+      "id": 15,
+      "name": "Gear level_1"
+    }
+  ],
+  "links": [
+
+    {
+      "source": 1,
+      "target": 2
+    },
+    {
+      "source": 2,
+      "target": 8
+    },
+    {
+      "source": 3,
+      "target": 2
+    },
+
+    {
+      "source": 4,
+      "target": 1
+    },
+            {
+      "source": 4,
+      "target": 2
+    }
+    ,
+
+    {
+      "source": 4,
+      "target": 3
+    },
+     {
+      "source": 5,
+      "target": 9
+    }
+    ,
+    {
+      "source": 5,
+      "target": 10
+    }
+    ,
+
+    {
+      "source": 4,
+      "target": 9
+    },
+    {
+      "source": 6,
+      "target": 8
+    }
+    ,
+    {
+      "source": 5,
+      "target": 10
+    }
+    ,
+    {
+      "source": 7,
+      "target": 15
+    }
+    ,
+    {
+      "source": 9,
+      "target": 6
+    }
+    ,
+    {
+      "source": 10,
+      "target": 9
+    } ,
+    {
+      "source": 11,
+      "target": 5
+    } ,
+    {
+      "source": 11,
+      "target": 9
+    } ,
+    {
+      "source": 12,
+      "target": 11
+    } ,
+    {
+      "source": 12,
+      "target": 9
+    },
+    {
+      "source": 13,
+      "target": 5
+    },
+    {
+      "source": 13,
+      "target": 6
+    },
+    {
+      "source": 14,
+      "target": 13
+    },
+    {
+      "source": 15,
+      "target": 14
+    },
+    {
+      "source": 15,
+      "target": 16
+    }
+  ]
+}

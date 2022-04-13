@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Basic Page Needs–– -->
+  <meta charset="utf-8">
+  <title>Vega Lite Assignment</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+
+  <!-- Mobile Specific Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+
+  <!-- Load d3.js -->
+  <script src="https://d3js.org/d3.v4.js"></script>
+
+  <!-- Create a div where the graph will take place -->
+  <div id="my_dataviz"></div>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/customize.css">
+  <style>
+  
+    .vega-actions a {
+        margin-right: 5px;
+        margin-left: 20px;
+        padding-left: 20px;
+      }
+  </style>
+
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+
+<body>
+
+  <div class="container one-bottom" style="margin-top: 50px">
+    <div class="ten columns">
+      <h2>Visual Analytics, Spring 2022</h2>
+      <p>
+        DSBA-5122
+        <br>
+        Subham Kumar Sah | ssah1@uncc.edu 
+      </p>
+      <h3>Vega-lite Assignment</h3>
+    </div>
+    <div class="two columns">
+    </div>
+  
+
+  <div id="vis"></div>
+  <div id="vis1"></div>
+
+  <script>
+    // Assign the specification to a local variable vlSpec.
+    var vlSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/vega/vega/master/docs/data/disasters.csv"
+  },
+  "width": 900,
+  "height": 600,
+  "layer": [
+    {
+      "encoding": {
+        "x": {"field": "Year", "type": "temporal", "timeUnit":"year"},
+        "y": {"field": "Deaths", "type": "quantitative","aggregate":"max"},
+        "color": {"field": "Entity", "type": "nominal"}
+      },
+      "layer": [
+        {"mark": "line"},
+        {
+          "params": [{
+            "name": "label",
+            "select": {
+              "type": "point",
+              "encodings": ["x"],
+              "nearest": true,
+              "on": "mouseover"
+            }
+          }],
+          "mark": "point",
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "param": "label",
+                "empty": false,
+                "value": 2
+              },
+              "value": 0.5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [{"filter": {"param": "label", "empty": false}}],
+      "layer": [
+        {
+          "mark": {"type": "rule", "color": "gray"},
+          "encoding": {
+            "x": {"type": "temporal", "field": "Year", "aggregate": "max"}
+          }
+        },
+        {
+          "encoding": {
+            "text": {"type": "quantitative", "field": "Deaths"},
+            "x": {"type": "temporal", "field": "Year"},
+            "y": {"type": "quantitative", "field": "Deaths"}
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "text",
+                "stroke": "white",
+                "strokeWidth": 2,
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+              }
+            },
+            {
+              "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5},
+              "encoding": {
+                "color": {"type": "nominal", "field": "symbol"}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+      };
+
+      // Embed the visualization in the container with id `vis`
+      vegaEmbed('#vis', vlSpec);
+
+
+
+      var vlSpec1 = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "https://raw.githubusercontent.com/vega/vega/master/docs/data/disasters.csv"},
+  "width": 900,
+  "height": 800,
+  "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+  "encoding": {
+    "x": {"timeUnit": "year", "field": "Year", "type": "ordinal"},
+    "y": {"field": "Deaths", "type": "quantitative"},
+    "color": {"field": "Entity"}
+  }
+      };
+
+
+vegaEmbed('#vis1', vlSpec1);
+
+
+    
+
+
+  </script>
+
+</div>
+
+</body>
+
+</html>
